@@ -10,16 +10,19 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	int balance, full;
 
 	if (!tree)
-		return (0); 
+		return (0);
 
 	if (tree)
 	{
 		balance = binary_tree_balance(tree);
 		full = binary_tree_is_full(tree);
-	}
-	if (balance == 0 && full == 1)
-		return (1);
+		if (balance == 0 && full == 1)
+		{
+			printf("balance: %d full: %d\n", balance, full);
+			return (1);
 
+		}
+	}
 	return (0);
 }
 
@@ -73,4 +76,20 @@ int binary_tree_is_full(const binary_tree_t *tree)
 		return (1);
 
 	return (binary_tree_is_full(tree->right) && binary_tree_is_full(tree->left));
+}
+/**
+ *binary_tree_is_leaf -chech if the node is leaf
+ *@node: pointer to node to check
+ *Return: 1 if is leaf, otherwise 0.
+ */
+int binary_tree_is_leaf(const binary_tree_t *node)
+{
+	if (node == NULL)
+		return (0);
+
+	else if (node->left == NULL && node->right == NULL)
+		return (1);
+
+	else
+		return (0);
 }
